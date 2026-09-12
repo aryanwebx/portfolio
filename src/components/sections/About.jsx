@@ -4,22 +4,22 @@ import { SectionHeader } from '../ui/SectionHeader';
 
 const strengths = [
   {
-    icon: '💻',
+    icon: '01',
     title: 'Full-Stack',
     desc: 'React, Node.js, Express & MongoDB',
   },
   {
-    icon: '⚙️',
+    icon: '02',
     title: 'Backend',
     desc: 'REST APIs, Redis, JWT & Socket.IO',
   },
   {
-    icon: '🧩',
+    icon: '03',
     title: 'Problem Solver',
     desc: '400+ LeetCode problems solved',
   },
   {
-    icon: '🤖',
+    icon: '04',
     title: 'AI-Assisted',
     desc: 'Claude, Cursor & Prompt Engineering',
   },
@@ -100,9 +100,9 @@ export function About() {
               {strengths.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-card border border-border rounded-xl p-5 hover:border-accent/40 hover:-translate-y-1 transition-all duration-300"
+                  className="border-t border-border pt-4 hover:border-accent transition-colors duration-300"
                 >
-                  <div className="text-2xl mb-3">{item.icon}</div>
+                  <div className="font-mono text-xs text-accent mb-6">{item.icon}</div>
 
                   <h3 className="text-text-primary font-semibold mb-2">
                     {item.title}

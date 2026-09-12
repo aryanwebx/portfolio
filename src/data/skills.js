@@ -60,12 +60,6 @@ export const tools = [
   'GitHub',
   'Postman',
   'Vercel',
-  'Firebase',
   'VS Code',
-  'Claude',
-  'Cursor',
-  'Prompt Engineering',
-  'REST APIs',
-  'Responsive Design',
-  'JWT Authentication',
+  'Claude'
 ];

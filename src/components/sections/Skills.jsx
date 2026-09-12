@@ -35,9 +35,8 @@ function CategoryCard({ category, index }) {
     <div
       ref={ref}
       className={`
-        bg-card border ${colors.border} rounded-2xl p-6
-        bg-gradient-to-br ${colors.glow} to-transparent
-        hover:border-opacity-40 transition-all duration-500
+        border-b border-border pb-6
+        transition-all duration-500
         ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
       `}
       style={{ transitionDelay: `${index * 100}ms` }}>
@@ -70,10 +69,8 @@ function CategoryCard({ category, index }) {
             title={skill.name}
             className="
               flex flex-col items-center justify-center
-              p-4 rounded-xl bg-surface border border-border
-              hover:border-accent/40 hover:scale-105
-              hover:-translate-y-1
-              hover:shadow-[0_0_20px_rgba(0,217,255,0.25)]
+              p-3 rounded-none bg-transparent border-b border-border
+              hover:border-accent
               transition-all duration-300 group
             "
             style={{ transitionDelay: `${i * 80}ms` }}>
@@ -98,8 +95,6 @@ export function Skills() {
 
   return (
     <section id="skills" className="section-padding relative bg-surface/40">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_100%_50%,rgba(0,217,255,0.04),transparent)]" />
-
       <div className="section-container relative">
         <SectionHeader
           label="Technical Skills"
@@ -120,7 +115,7 @@ export function Skills() {
           className={`transition-all duration-700 ${
             toolsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}>
-          <div className="bg-card border border-border rounded-2xl p-6">
+          <div className="border-t border-border pt-5">
             <div className="flex items-center gap-2 mb-5">
               <span className="font-mono text-xs tracking-[0.15em] uppercase text-text-muted">
                 Tools & Environment
@@ -133,9 +128,9 @@ export function Skills() {
                 <span
                   key={tool}
                   className="
-                    font-mono text-xs bg-surface border border-border
+                    font-mono text-xs bg-transparent border-b border-border
                     text-text-secondary hover:border-accent/40
-                    hover:text-accent px-3.5 py-2 rounded-lg
+                    hover:text-accent px-1 py-2
                     transition-all duration-200
                   ">
                   {tool}
