@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
   Activity,
   ArrowRight,
   ArrowUpRight,
-  CheckSquare,
-  Cloud,
   Download,
   Github,
   GraduationCap,
@@ -16,21 +15,24 @@ import {
 import { projects as projectData } from "./data/projects";
 import { skillCategories, tools } from "./data/skills";
 
-const skills = [
-  ...new Set([
-    ...skillCategories.flatMap((category) => category.skills.map((skill) => skill.name)),
-    ...tools,
-  ]),
-];
-const projectIcons = [Activity, CheckSquare, Cloud];
 const projects = projectData.map((project, index) => ({
-  title: project.title,
-  description: project.solution,
+  category: project.category,
+  year: project.year,
+  tagline: project.tagline,
+  summary: project.summary,
   tags: project.stack.slice(0, 3),
-  icon: projectIcons[index % projectIcons.length],
+  image: project.image,
+  github: project.github,
   href: project.live && project.live !== "#" ? project.live : project.github,
 }));
-const sections = ["home", "about", "projects", "experience", "contact"];
+const sections = ["home", "about", "experience", "projects", "contact"];
+const sectionLabels = {
+  home: "Home",
+  about: "About",
+  experience: "Skills",
+  projects: "Projects",
+  contact: "Contact",
+};
 
 export default function App() {
   const [active, setActive] = useState("home");
@@ -53,19 +55,24 @@ export default function App() {
       <div className="pointer-events-none absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#E0D5C7]/60 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full bg-[#DFD4C4]/50 blur-3xl" />
       <div className="max-w-6xl mx-auto px-6 sm:px-12 py-10 sm:py-14 relative z-10">
-        <header className="flex flex-col sm:flex-row items-center justify-between gap-6 pb-12 border-b border-[#DCD3C7]">
+        <header className="site-header flex flex-col sm:flex-row items-center justify-between gap-6 pb-12 border-b border-[#DCD3C7]">
           <a
             href="#home"
-            className="whitespace-nowrap font-serif text-2xl font-bold tracking-tight text-[#1C1B1A]">
-            Aryan Yadav
+            className="site-brand whitespace-nowrap font-serif text-2xl font-bold tracking-tight text-[#1C1B1A]">
+            <span className="brand-mark">AY</span>
+            <span className="brand-name">
+              <strong>Aryan</strong> Yadav
+            </span>
           </a>
-          <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-[#4A4744]">
+          <nav
+            className="site-nav flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium text-[#4A4744]"
+            aria-label="Primary navigation">
             {sections.map((item) => (
               <a
                 key={item}
                 href={`#${item}`}
-                className={`${active === item ? "text-[#1C1B1A] font-semibold border-b-2 border-[#1C1B1A] pb-0.5" : "hover:text-[#1C1B1A]"} transition-colors`}>
-                {item[0].toUpperCase() + item.slice(1)}
+                className={`site-nav-link ${active === item ? "is-active" : ""}`}>
+                {sectionLabels[item]}
               </a>
             ))}
           </nav>
@@ -122,23 +129,32 @@ export default function App() {
                 </a>
               </div>
             </div>
-            <aside className="sm:col-span-4 sm:pl-10 sm:border-l sm:border-[#D5CBC0] flex flex-col justify-center space-y-6">
-              <div>
-                <h3 className="font-serif text-3xl sm:text-4xl text-[#1E1C1A] leading-tight font-medium">
-                  Turning
-                  <br />
-                  ideas into
-                  <br />
-                  impact.
-                </h3>
-                <div className="w-10 h-0.5 bg-[#2B2825] my-4" />
-              </div>
-              <div className="silver-shine font-serif italic text-base sm:text-lg leading-[1.22] -rotate-2 text-right pr-3 sm:pr-1">
-                <span className="block translate-x-1">Better</span>
-                <span className="block -translate-x-1">Code</span>
-                <span className="block translate-x-1">Brighter</span>
-                <span className="block -translate-x-2">Tomorrow</span>
-              </div>
+            <aside className="sm:col-span-4 sm:pl-10 sm:border-l sm:border-[#D5CBC0] flex items-center">
+              <motion.div
+                className="hero-visual"
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}>
+                <div className="hero-visual-header">
+                  <span>ARYAN / 01</span>
+                  <span className="hero-visual-live">LIVE BUILD</span>
+                </div>
+                <div className="hero-visual-body">
+                  <div className="hero-visual-mark">/</div>
+                  <div>
+                    <span className="hero-visual-kicker">FULL-STACK ENGINEERING</span>
+                    <strong>
+                      From brief
+                      <br />
+                      to shipped.
+                    </strong>
+                  </div>
+                </div>
+                <div className="hero-visual-footer">
+                  <span>REACT / NODE / AI</span>
+                  <span>SCROLL TO EXPLORE ↓</span>
+                </div>
+              </motion.div>
             </aside>
           </section>
 
@@ -147,15 +163,36 @@ export default function App() {
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-10 items-start">
               <div className="sm:col-span-7 space-y-4">
                 <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1D1B]">
-                  More About Me
+                  Engineer with a bias toward shipping.
                 </h2>
                 <p className="text-[#56504A] leading-relaxed text-base sm:text-lg">
-                  I’m a Computer Science undergraduate with a keen interest in web development,
-                  cloud technologies, and problem solving. I love turning ideas into real projects
-                  and continuously learning new tools and technologies.
+                  I’m Aryan, a Computer Science undergraduate who turns complex product ideas into
+                  focused, reliable web experiences. My work sits where thoughtful interfaces meet
+                  scalable backend systems and practical AI.
                 </p>
+                <div className="about-stats">
+                  <div>
+                    <strong>400+</strong>
+                    <span>LeetCode problems solved</span>
+                  </div>
+                  <div>
+                    <strong>4</strong>
+                    <span>Production projects shipped</span>
+                  </div>
+                  <div>
+                    <strong>2027</strong>
+                    <span>B.Tech graduation target</span>
+                  </div>
+                </div>
               </div>
               <div className="sm:col-span-5 space-y-6 bg-[#E6DDD1]/50 p-6 sm:p-8 rounded-2xl border border-[#D9CFC2]">
+                <div className="about-card-header">
+                  <span>PROFILE / 2026</span>
+                  <span>OPEN TO OPPORTUNITIES</span>
+                </div>
+                <p className="about-card-lead">
+                  Building at the intersection of <em>product, systems, and AI.</em>
+                </p>
                 <Detail icon={GraduationCap} title="Education">
                   B.Tech in Computer Science &bull; 2023 – 2027
                 </Detail>
@@ -170,94 +207,146 @@ export default function App() {
           </section>
 
           <section id="experience" className="py-14 border-t border-[#DDD3C6]">
-            <SectionLabel number="02" label="SKILLS" />
-            <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1D1B] mb-8">
-              What I Work With
-            </h2>
-            <div className="flex flex-wrap gap-2.5 sm:gap-3">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="px-5 py-2 rounded-full bg-[#DFD6C9] hover:bg-[#D5CBBC] text-[#2C2926] text-xs sm:text-sm font-medium border border-[#D0C6B8]">
-                  {skill}
-                </span>
+            <div className="skills-heading">
+              <div>
+                <SectionLabel number="02" label="SKILLS" />
+                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1D1B]">
+                  What I Work With
+                </h2>
+              </div>
+              <p>
+                A practical stack shaped by shipping full-stack products, integrating AI, and
+                solving the details that make software dependable.
+              </p>
+            </div>
+            <div className="skill-groups">
+              {skillCategories.map((category, index) => (
+                <article className="skill-group" key={category.id}>
+                  <div className="skill-group-header">
+                    <span className="skill-group-index">0{index + 1}</span>
+                    <div>
+                      <h3>{category.label}</h3>
+                      <p>{category.description}</p>
+                    </div>
+                  </div>
+                  <div className="skill-group-list">
+                    {category.skills.map((skill) => (
+                      <span key={skill.name} title={skill.name}>
+                        <img src={skill.icon} alt="" loading="lazy" />
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+                </article>
               ))}
+            </div>
+            <div className="skill-toolkit">
+              <span>DAILY TOOLKIT</span>
+              <div>
+                {tools.map((tool) => (
+                  <span key={tool}>{tool}</span>
+                ))}
+              </div>
             </div>
           </section>
 
           <section id="projects" className="py-16 border-t border-[#DDD3C6]">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+            <div className="projects-heading">
               <div>
                 <SectionLabel number="03" label="PROJECTS" />
                 <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1D1B]">
-                  Featured Projects
+                  Selected work
                 </h2>
               </div>
+              <p>
+                A selection of systems and interfaces built to solve real problems, from AI-assisted
+                workflows to real-time collaboration.
+              </p>
               <a
                 href="https://github.com/aryanwebx"
-                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#2D2A27]">
+                className="projects-all-link inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#2D2A27]">
                 View All Projects <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {projects.map((project) => {
-                const Icon = project.icon;
-                return (
-                  <article
-                    key={project.title}
-                    className="bg-[#E7DFD4]/70 border border-[#D7CDC0] rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-[#BDB0A0] hover:shadow-sm group">
-                    <div className="space-y-4">
-                      <div className="w-10 h-10 rounded-xl bg-[#DDD3C5] flex items-center justify-center text-[#2A2724]">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <h3 className="font-serif text-xl font-bold text-[#1D1B19]">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm text-[#5C5650] leading-relaxed">
-                        {project.description}
-                      </p>
+            <div className="projects-grid">
+              {projects.map((project) => (
+                <article key={project.title} className="project-card group">
+                  <div className="project-card-media">
+                    <img
+                      src={project.image}
+                      alt={`${project.title} project preview`}
+                      className="h-full w-full object-cover object-top"
+                    />
+                    <span>{project.category}</span>
+                  </div>
+                  <div className="project-card-body">
+                    <div className="project-card-meta">
+                      <span>{project.tagline}</span>
                     </div>
-                    <div className="pt-6 space-y-4">
-                      <div className="flex flex-wrap gap-1.5">
+                    <h3>{project.title}</h3>
+                    <p className="project-card-summary">{project.summary}</p>
+                    <div className="project-card-footer">
+                      <div className="project-card-tags">
                         {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2.5 py-1 rounded-md bg-[#DFD6C9] text-[11px] font-medium text-[#46413C]">
-                            {tag}
-                          </span>
+                          <span key={tag}>{tag}</span>
                         ))}
                       </div>
                       <a
                         href={project.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#262422] group-hover:underline">
+                        className="project-card-link inline-flex items-center gap-1.5 text-xs font-semibold text-[#262422]">
                         View Project <ArrowUpRight className="w-3.5 h-3.5" />
                       </a>
                     </div>
-                  </article>
-                );
-              })}
+                  </div>
+                </article>
+              ))}
             </div>
           </section>
 
           <section id="contact" className="py-16 border-t border-[#DDD3C6]">
-            <SectionLabel number="04" label="LET'S CONNECT" />
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-8 bg-[#E5DCD0]/60 border border-[#D9CFC1] rounded-2xl p-8 sm:p-10">
-              <div className="max-w-md space-y-2">
-                <h2 className="font-serif text-3xl font-semibold text-[#1C1A18]">Get In Touch</h2>
-                <p className="text-sm sm:text-base text-[#56504A] leading-relaxed">
-                  I’m always open to discussing new opportunities, interesting projects, or just
-                  having a chat about technology.
+            <div className="contact-panel">
+              <div className="contact-main">
+                <SectionLabel number="04" label="LET'S CONNECT" />
+                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1C1A18]">
+                  Have a problem
+                  <br />
+                  worth solving?
+                </h2>
+                <p>
+                  I’m open to thoughtful collaborations, ambitious products, and conversations about
+                  building useful software.
                 </p>
+                <a href="mailto:aryanyadav9811@gmail.com" className="contact-email">
+                  <Mail className="w-4 h-4" />
+                  aryanyadav9811@gmail.com
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
               </div>
-              <a
-                href="mailto:aryanyadav9811@gmail.com"
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#201E1C] text-[#F3EFE9] text-sm font-semibold hover:bg-[#34302C] shadow-sm">
-                <Mail className="w-4 h-4" />
-                Say Hello
-                <ArrowRight className="w-4 h-4" />
-              </a>
+              <div className="contact-side">
+                <div>
+                  <span>BASED IN</span>
+                  <strong>Noida, India</strong>
+                  <iframe
+                    className="contact-map"
+                    title="Map showing Noida, India"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=77.32%2C28.50%2C77.43%2C28.62&layer=mapnik&marker=28.5355%2C77.3910"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <span>ELSEWHERE</span>
+                  <div className="contact-links">
+                    <a href="https://github.com/aryanwebx">
+                      GitHub <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                    <a href="https://linkedin.com/in/aryanwebx">
+                      LinkedIn <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
         </main>

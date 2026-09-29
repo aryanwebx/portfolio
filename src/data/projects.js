@@ -1,134 +1,112 @@
 export const projects = [
   {
-  id: 'project-pulse',
-  title: 'Project Pulse',
-  tagline: 'Multi-Tenant Issue Tracking Platform',
-  category: 'Full Stack',
-  status: 'Production',
-  year: '2025',
+    id: "interviewready",
+    title: "InterviewReady",
+    tagline: "AI-Powered Interview Preparation Platform",
+    summary: "AI interview preparation and ATS resume formatting powered by Gemini.",
+    category: "AI + Full Stack",
+    status: "Production",
+    year: "2025",
 
-  problem:
-    'Teams struggle to manage issues across multiple organizations while maintaining complete data isolation, secure authentication, and real-time collaboration.',
+    problem:
+      "Candidates need practical interview preparation, resume feedback, and secure access to personalized reports in one place.",
 
-  solution:
-    'Developed a multi-tenant issue tracking platform with isolated workspaces, secure JWT authentication, role-based access control, Redis caching, and real-time updates using Socket.IO.',
+    solution:
+      "Built an AI-powered interview preparation platform that analyzes resumes, generates personalized interview reports, and formats resumes into ATS-friendly layouts.",
 
-  architecture:
-    'React.js → Express.js REST APIs → JWT Authentication → MongoDB → Redis Cache → Socket.IO → Modular Backend Architecture',
+    architecture: "React.js -> Express.js REST APIs -> Gemini API -> MongoDB -> Redis -> Puppeteer",
 
-  features: [
-    'Multi-tenant organization workspaces',
-    'JWT authentication & role-based access control',
-    'Real-time issue updates using Socket.IO',
-    'Redis caching for improved API performance',
-    'Responsive dashboard with issue tracking',
-  ],
+    features: [
+      "AI-generated interview reports",
+      "Resume analysis and ATS-friendly formatting",
+      "PDF resume processing and generation",
+      "JWT authentication with HTTP-only cookies",
+      "Redis rate limiting and caching",
+    ],
 
-  stack: [
-    'React.js',
-    'Node.js',
-    'Express.js',
-    'MongoDB',
-    'Redis',
-    'Socket.IO',
-    'JWT',
-  ],
+    stack: ["React.js", "Node.js", "Express.js", "MongoDB", "Redis", "Gemini API", "Puppeteer"],
 
-  github: 'https://github.com/aryanwebx/Project-Pulse-',
-  live: 'https://project-pulse-gules.vercel.app/',
+    github: "https://github.com/aryanwebx/InterviewReady",
+    live: "https://interviewready.aryanwebx.me/",
+    image: "/projects/interviewready.png",
 
-  color: '#00D9FF',
-  accent: 'from-cyan-500/10 to-blue-500/10',
-},
+    color: "#F5A623",
+    accent: "from-amber-500/10 to-orange-500/10",
+  },
   {
-  id: 'safenet',
-  title: 'Safenet',
-  tagline: 'AI-Assisted Content Moderation System',
+    id: "project-pulse",
+    title: "Project Pulse",
+    tagline: "Multi-Tenant Issue Tracking Platform",
+    summary: "Multi-tenant issue tracking with RBAC, Redis caching, and real-time updates.",
+    category: "Full Stack",
+    status: "Production",
+    year: "2025",
 
-  category: 'AI + Full Stack',
+    problem:
+      "Teams struggle to manage issues across multiple organizations while maintaining complete data isolation, secure authentication, and real-time collaboration.",
 
-  status: 'Production',
+    solution:
+      "Developed a multi-tenant issue tracking platform with isolated workspaces, secure JWT authentication, role-based access control, Redis caching, and real-time updates using Socket.IO.",
 
-  year: '2025',
+    architecture:
+      "React.js → Express.js REST APIs → JWT Authentication → MongoDB → Redis Cache → Socket.IO → Modular Backend Architecture",
 
-  problem:
-    'Online platforms require automated moderation to detect inappropriate content quickly across text, images, and audio while reducing manual review effort.',
+    features: [
+      "Multi-tenant organization workspaces",
+      "JWT authentication & role-based access control",
+      "Real-time issue updates using Socket.IO",
+      "Redis caching for improved API performance",
+      "Responsive dashboard with issue tracking",
+    ],
 
-  solution:
-    'Built an AI-assisted moderation platform capable of scanning text, image, and audio files using Groq API with an Express.js backend and responsive React frontend.',
+    stack: ["React.js", "Node.js", "Express.js", "MongoDB", "Redis", "Socket.IO", "JWT"],
 
-  architecture:
-    'React.js → Express.js → Groq API → Content Classification → Moderation Dashboard',
+    github: "https://github.com/aryanwebx/Project-Pulse-",
+    live: "https://project-pulse-gules.vercel.app/",
+    image: "/projects/project-pulse.png",
 
-  features: [
-    'Text moderation',
-    'Image moderation',
-    'Audio moderation',
-    'Drag-and-drop uploads',
-    'Real-time moderation feedback',
-    'Automated error handling',
-  ],
-
-  stack: [
-    'React.js',
-    'Node.js',
-    'Express.js',
-    'Groq API',
-    'REST APIs',
-  ],
-
-  github: 'https://github.com/aryanwebx/hackhazards',
-
-  live: '#',
-
-  color: '#A78BFA',
-
-  accent: 'from-violet-500/10 to-purple-500/10',
-},
+    color: "#00D9FF",
+    accent: "from-cyan-500/10 to-blue-500/10",
+  },
   {
-  id: 'foodie-fiesta',
+    id: "safenet",
+    title: "Safenet",
+    tagline: "AI-Assisted Content Moderation System",
+    summary: "Multimodal text, image, and audio moderation powered by Groq AI.",
 
-  title: 'Foodie Fiesta',
+    category: "AI + Full Stack",
 
-  tagline: 'Recipe Discovery Web Application',
+    status: "Production",
 
-  category: 'Frontend',
+    year: "2025",
 
-  status: 'Production',
+    problem:
+      "Online platforms require automated moderation to detect inappropriate content quickly across text, images, and audio while reducing manual review effort.",
 
-  year: '2024',
+    solution:
+      "Built an AI-assisted moderation platform capable of scanning text, image, and audio files using Groq API with an Express.js backend and responsive React frontend.",
 
-  problem:
-    'Finding recipes across multiple websites is time-consuming and often results in inconsistent user experiences and slow searches.',
+    architecture:
+      "React.js → Express.js → Groq API → Content Classification → Moderation Dashboard",
 
-  solution:
-    'Built a responsive recipe discovery platform integrating Spoonacular REST APIs with optimized search, client-side filtering, and caching.',
+    features: [
+      "Text moderation",
+      "Image moderation",
+      "Audio moderation",
+      "Drag-and-drop uploads",
+      "Real-time moderation feedback",
+      "Automated error handling",
+    ],
 
-  architecture:
-    'React.js → Spoonacular REST APIs → Client-side Filtering → Responsive UI',
+    stack: ["React.js", "Node.js", "Express.js", "Groq API", "REST APIs"],
 
-  features: [
-    'Recipe search',
-    'Debounced search',
-    'Client-side filtering',
-    'Responsive design',
-    'Recipe details',
-  ],
+    github: "https://github.com/aryanwebx/hackhazards",
 
-  stack: [
-    'JavaScript',
-    'React.js',
-    'HTML5',
-    'CSS3',
-    'REST APIs',
-  ],
+    live: "https://safenet11.netlify.app/",
+    image: "/projects/safenet.png",
 
-  github: 'https://github.com/aryanwebx/foodie-fiesta',
+    color: "#A78BFA",
 
-  live: 'https://foodie-fiesta-teal.vercel.app/',
-
-  color: '#34D399',
-
-  accent: 'from-emerald-500/10 to-green-500/10',
-},
+    accent: "from-violet-500/10 to-purple-500/10",
+  },
 ];
