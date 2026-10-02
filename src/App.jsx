@@ -78,7 +78,7 @@ export default function App() {
           </nav>
           <a
             href="/Aryan_Yadav_Resume.pdf"
-            download
+            open
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#2B2825] text-xs font-semibold tracking-wide uppercase hover:bg-[#2B2825] hover:text-[#EDE7DF] transition-all">
             <Download className="w-3.5 h-3.5" />
             Download Resume
